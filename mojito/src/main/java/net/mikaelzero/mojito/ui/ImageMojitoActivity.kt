@@ -123,7 +123,7 @@ class ImageMojitoActivity : AppCompatActivity(), IMojitoActivity {
         binding.viewPager.setCurrentItem(currentPosition, false)
         val url = viewPagerBeans[currentPosition].url
         binding.save.visibility =
-            if (url.startsWith("http")) View.VISIBLE else View.GONE
+            if (url.startsWith("http") && onMojitoListener != null) View.VISIBLE else View.GONE
 
         binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
@@ -143,7 +143,7 @@ class ImageMojitoActivity : AppCompatActivity(), IMojitoActivity {
                 onMojitoListener?.onViewPageSelected(position)
                 val url = fragmentMap[position]?.fragmentConfig?.originUrl
                 binding.save.visibility =
-                    if (url != null && url.startsWith("http")) View.VISIBLE else View.GONE
+                    if (url != null && url.startsWith("http")&& onMojitoListener != null) View.VISIBLE else View.GONE
             }
         })
         activityCoverLoader?.pageChange(viewPagerBeans.size, activityConfig.position)
