@@ -73,9 +73,11 @@ class ImageMojitoActivity : AppCompatActivity(), IMojitoActivity {
                 viewParams == null -> {
                     null
                 }
+
                 i >= viewParams!!.size -> {
                     null
                 }
+
                 else -> {
                     viewParams?.get(i)
                 }
@@ -156,8 +158,8 @@ class ImageMojitoActivity : AppCompatActivity(), IMojitoActivity {
                 ?.let { url ->
                     onMojitoListener?.onClickDownload(this, url)
                 }
-
         }
+        binding.save.visibility = if (onMojitoListener != null) View.VISIBLE else View.GONE
     }
 
     fun setViewPagerLock(isLock: Boolean) {
